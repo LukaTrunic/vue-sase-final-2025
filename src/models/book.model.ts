@@ -18,12 +18,10 @@
 export interface BookModel {
     id: string;
     title: string;
-    authors: string[]; // <-- List of author names
-    publisher?: string;
+    authors: string[];
     publishedDate?: string;
-    description?: string;
-    pageCount?: number;
-    categories?: string[]; // <-- List of categories
-    thumbnail?: string; // <-- URL to cover image
-  }
+    categories?: string[];
+    thumbnail?: string;
+}
+  
   

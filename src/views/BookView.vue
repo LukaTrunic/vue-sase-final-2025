@@ -30,14 +30,11 @@ BookService.getBookById(id)
                     <li class="list-group-item">
                         <i class="fa-solid fa-list"></i>{{ book.categories }}
                     </li>
-                    <li class="list-group-item" v-if="book.description">
-                        <i class="fa-solid fa-list"></i>{{ book.description }}
+                    <li class="list-group-item" v-if="book.authors">
+                        <i class="fa-solid fa-list"></i>{{ book.authors }}
                     </li>
-                    <li class="list-group-item" v-if="book.publisher">
-                        <i class="fa-solid fa-list"></i>{{ book.publisher }}
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fa-solid fa-book-open"></i>{{ book.pageCount }}
+                    <li class="list-group-item" v-if="book.title">
+                        <i class="fa-solid fa-list"></i>{{ book.title }}
                     </li>
                 </ul>
             </div>

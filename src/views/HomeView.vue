@@ -5,11 +5,23 @@ import { coverImage, formatTime } from '@/utils';
 import { ref } from 'vue';
 
 const books = ref<BookModel[]>()
+const allBooks = ref<BookModel[]>()
 BookService.getBooks()
-  .then(rsp => books.value = rsp.data)
+  .then(rsp => {
+    allBooks.value = rsp.data
+    books.value = rsp.data
+  })
 
 function doSearch(e:any) {
+  if(allBooks.value == undefined) return
+
+  const input = e.target.value? e.target.value.toLowerCase() : ''
+  if(input == '') {
+    books.value = allBooks.value
+  }
+
   console.log(e.target.value)
+  books.value = allBooks.value?.filter(b=>b.title.toLowerCase().includes(input))
 }
 </script>
 
@@ -33,9 +45,6 @@ function doSearch(e:any) {
         </li>
         <li class="list-group-item">
           <i class="fa-solid fa-list"></i>{{ b.categories }}
-        </li>
-        <li class="list-group-item">
-          <i class="fa-solid fa-book-open"></i>{{ b.pageCount }}
         </li>
       </ul>
       <div class="card-body">

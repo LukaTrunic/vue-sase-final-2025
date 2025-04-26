@@ -2,7 +2,7 @@ import type { BookModel } from "@/models/book.model";
 import axios from "axios";
 
 const client = axios.create({
-    baseURL: "https://www.googleapis.com",
+    baseURL: "https://openlibrary.org",
     timeout: 12000,
     headers: {
         'Accept': 'application/json',
@@ -16,15 +16,15 @@ const client = axios.create({
 export class BookService {
     static async getBooks() {
         return await client.request<BookModel[]>({
-            url: '/books/v1/volumes?q=harry+potter',
+            url: '/search.json',
             method: 'get',
             params : {
-                type: 'title'
+                q: 'a'
             }
         })
     }
 
     static async getBookById(id: number) {
-        return await client.get<BookModel>(`/book/v1/volumes/${id}`)
+        return await client.get<BookModel>(`/works/${id}.json`)
     }
 }
