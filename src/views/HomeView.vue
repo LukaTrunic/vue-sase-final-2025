@@ -12,23 +12,27 @@ BookService.getBooks()
 
 <template>
   <div class="wrapper mb-3 mt-3">
-    <div class="card" style="width: 18rem;">
-      <img src="" class="card-img-top" alt="...">
+    <div class="card" style="width: 18rem;" v-for="b of books" :key="b.id">
+      <img src="" class="card-img-top" :alt="b.title">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
+        <h5 class="card-title">{{ b.title }}</h5>
+        <p class="card-subtitle mb-2 text-body-secondary">{{ b.author.name }}</p>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <i class="fa-solid fa-clock"></i> <!-- {{ formatTime() }} -->
+          <i class="fa-solid fa-clock"></i> {{  b.publishedDate ? formatTime(b.publishedDate) : 'Unknown date' }}
         </li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">
+          <i class="fa-solid fa-list"></i>{{ b.category }}
+        </li>
+        <li class="list-group-item">
+          <i class="fa-solid fa-book-open"></i>{{ b.pages }}
+        </li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-primary">
+          <i class="fa-solid fa-up-right-from-square"></i>More
+        </RouterLink>
       </div>
     </div>
   </div>
