@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BookModel } from '@/models/book.model';
 import { BookService } from '@/services/book.service';
+import { formatTime } from '@/utils';
 import { ref } from 'vue';
 
 const books = ref<BookModel[]>()
@@ -10,8 +11,8 @@ BookService.getBooks()
 </script>
 
 <template>
-  <div class="wrapper">
-    <div class="card" style="width: 18rem;" v-for="b of books" :key="b.id" >
+  <div class="wrapper mb-3 mt-3">
+    <div class="card" style="width: 18rem;">
       <img src="" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -19,7 +20,9 @@ BookService.getBooks()
           content.</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">An item</li>
+        <li class="list-group-item">
+          <i class="fa-solid fa-clock"></i> <!-- {{ formatTime() }} -->
+        </li>
         <li class="list-group-item">A second item</li>
         <li class="list-group-item">A third item</li>
       </ul>
@@ -29,7 +32,14 @@ BookService.getBooks()
       </div>
     </div>
   </div>
-  <ul>
-    <li v-for="b of books" :key="b.id">{{ b.author }} {{ b.category }}</li>
-  </ul>
 </template>
+
+<style>
+  .wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+</style>
