@@ -11,7 +11,7 @@ BookService.getBooks()
 </script>
 
 <template>
-  <div class="wrapper mb-3 mt-3">
+  <div class="wrapper mb-3 mt-3" v-if="books">
     <div class="card" style="width: 18rem;" v-for="b of books" :key="b.id">
       <img src="" class="card-img-top" :alt="b.title">
       <div class="card-body">
@@ -36,6 +36,7 @@ BookService.getBooks()
       </div>
     </div>
   </div>
+  <div v-else>Loading...</div>
 </template>
 
 <style>
