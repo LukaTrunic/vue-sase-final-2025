@@ -23,4 +23,8 @@ export class BookService {
             }
         })
     }
+
+    static async getBookById(id: number) {
+        return await client.get<BookModel>(`/book/${id}`)
+    }
 }
