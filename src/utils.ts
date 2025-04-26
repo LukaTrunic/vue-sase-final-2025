@@ -1,5 +1,7 @@
+import type { BookModel } from "./models/book.model";
+
 export function formatTime(iso: string) { // special time format ISO 8601 (YYYY-MM-DDTHH:mm:ss.SSSZ)
-    new Date(iso).toLocaleString('sr-RS', {
+    return new Date(iso).toLocaleString('sr-RS', {
         year: "numeric",
         month: '2-digit',
         day: '2-digit',
@@ -7,3 +9,7 @@ export function formatTime(iso: string) { // special time format ISO 8601 (YYYY-
         minute: '2-digit'
     })
 }
+
+export function coverImage(book: BookModel) {
+    return book.thumbnail
+  }

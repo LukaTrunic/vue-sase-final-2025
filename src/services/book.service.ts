@@ -16,7 +16,7 @@ const client = axios.create({
 export class BookService {
     static async getBooks() {
         return await client.request<BookModel[]>({
-            url: '/books/v1/volumes?q=a',
+            url: '/books/v1/volumes?q=harry+potter',
             method: 'get',
             params : {
                 type: 'title'
@@ -25,6 +25,6 @@ export class BookService {
     }
 
     static async getBookById(id: number) {
-        return await client.get<BookModel>(`/book/${id}`)
+        return await client.get<BookModel>(`/book/v1/volumes/${id}`)
     }
 }
