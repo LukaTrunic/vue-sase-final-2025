@@ -8,12 +8,17 @@ const books = ref<BookModel[]>()
 BookService.getBooks()
   .then(rsp => books.value = rsp.data)
 
+function doSearch(e:any) {
+  console.log(e.target.value)
+}
 </script>
 
 <template>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="search"><i class="fa-solid fa-magnifying-glass"></i></span>
-    <input type="text" class="form-control" aria-describedby="search">
+    <span class="input-group-text" id="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </span>
+    <input type="text" class="form-control" aria-describedby="search" placeholder="Title, Author..." @keyup="(e) => doSearch(e)">
   </div>
   <div class="wrapper mb-3" v-if="books">
     <div class="card book-card" v-for="b of books" :key="b.id">
