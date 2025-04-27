@@ -11,6 +11,18 @@ const client = axios.create({
 })
 
 export class MainService {
+
+    static async login(email: string, password: string) {
+        return await client.request({
+            url: '/user/login',
+            method: 'post',
+            data: {
+                email: email,
+                password: password
+            }
+        })
+    }
+
     static async useAxios<T>(
         url: string, 
         method: 'get' | 'post' | 'put' | 'delete' = 'get', 
@@ -18,10 +30,7 @@ export class MainService {
         return await client.request<T>({
             url: url,
             method: method,
-            data: data,
-            headers: {
-                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsdWthLnRydW5pYy4yMUBzaW5naW1haWwucnMiLCJpYXQiOjE3NDU3Njc4ODgsImV4cCI6MTc0NTg1NDI4OH0.kulLCPN_t7LlxYG5J-_JNVR-7WDJzVi3PIy0mYddzIM'
-            }
+            data: data
         })
     }
 }
