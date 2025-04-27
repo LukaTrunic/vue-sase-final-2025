@@ -21,6 +21,8 @@ export interface BookModel {
     authors: string; // []
     publishedDate: string;
     categories?: string[];
+    pageCount: number;
+    inStock: boolean;
     thumbnail?: string;
 }
   
