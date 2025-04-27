@@ -81,4 +81,5 @@ BookService.getBooks()
             </tr>
         </tbody>
     </table>
+    
 </template>
