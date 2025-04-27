@@ -7,6 +7,7 @@ import AuthorView from '@/views/AuthorView.vue'
 import LoginView from '@/views/LoginView.vue'
 import EditAuthor from '@/views/EditAuthor.vue'
 import NewAuthor from '@/views/NewAuthor.vue'
+import BorrowView from '@/views/BorrowView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,11 @@ const router = createRouter({
       path: '/author/:id',
       name: 'edit-author',
       component: EditAuthor,
+    },
+    {
+      path: '/borrow',
+      name: 'borrow',
+      component: BorrowView,
     }
   ]
 })

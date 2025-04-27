@@ -31,6 +31,11 @@ import { RouterLink, RouterView } from 'vue-router'
             </RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink class="nav-link" to="/borrow">
+              Borrow
+            </RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink class="nav-link" to="/about">
               <i class="fa-solid fa-circle-question"></i> About
             </RouterLink>
