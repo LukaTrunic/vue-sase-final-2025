@@ -1,5 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>Singidunum University - SASE</h1>
+    <h3>Luka Trunic - 2021230020</h3>
+    <p>This project was made for the final for course SASE in 2025</p>
   </div>
 </template>
