@@ -17,6 +17,7 @@ BookService.getBooks()
 </script>
 
 <template>
+    <h3>Table</h3>
     <table class="table table-striped table-hover" v-if="books">
         <thead>
             <tr>
@@ -24,8 +25,8 @@ BookService.getBooks()
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Categories</th>
-                <!-- <th scope="col">Published Date</th> -->
-                <!-- <th scope="col">Status</th> -->
+                <th scope="col">Downloads</th>
+                <th scope="col">Pupularity</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -35,15 +36,18 @@ BookService.getBooks()
                 <td>{{ b.title }}</td>
                 <td>{{ b.authors }}</td>
                 <td>{{ b.bookshelves }}</td>
-                <!-- <td>{{ formatTime(b.publishedDate) }}</td> -->
-                <!-- <td>
-                    <template v-if="b.inStock == true">
-                        <i class="fa-solid fa-circle text-warning"></i> Out Of Stock
+                <td>
+                    {{ b.download_count ? `${b.download_count} downloads` : 'Unknown downloads' }}
+                </td>
+
+                <td>
+                    <template v-if="b.download_count > 100000">
+                        <i class="fa-solid fa-circle text-success"></i> Popular
                     </template>
-<template v-else="">
-                        <i class="fa-solid fa-circle text-success"></i> Available
+                    <template v-else>
+                        <i class="fa-solid fa-circle text-warning"></i> Low Popularity
                     </template>
-</td> -->
+                </td>
                 <td>
                     <div class="btn-group">
                         <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-primary">

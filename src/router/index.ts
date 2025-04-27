@@ -5,6 +5,7 @@ import BookView from '@/views/BookView.vue'
 import TableView from '@/views/TableView.vue'
 import AuthorView from '@/views/AuthorView.vue'
 import LoginView from '@/views/LoginView.vue'
+import EditAuthor from '@/views/EditAuthor.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: '/author',
       name: 'author',
       component: AuthorView,
+    },
+    {
+      path: '/author/:id',
+      name: 'edit-author',
+      component: EditAuthor,
     },
   ],
 })
