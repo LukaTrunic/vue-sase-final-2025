@@ -24,11 +24,11 @@ BookService.getBookById(id)
                     {{ book.title }}
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+                    <!-- <li class="list-group-item">
                         <i class="fa-solid fa-clock"></i> {{ book.publishedDate ? formatTime(book.publishedDate) : 'Unknown date' }}
-                    </li>
+                    </li> -->
                     <li class="list-group-item">
-                        <i class="fa-solid fa-list"></i>{{ book.categories }}
+                        <i class="fa-solid fa-list"></i>{{ book.download_count }}
                     </li>
                     <li class="list-group-item" v-if="book.authors">
                         <i class="fa-solid fa-list"></i>{{ book.authors }}

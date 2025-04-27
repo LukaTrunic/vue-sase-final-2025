@@ -17,8 +17,8 @@ BookService.getBooks()
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Categories</th>
-                <th scope="col">Published Date</th>
-                <th scope="col">Status</th>
+                <!-- <th scope="col">Published Date</th> -->
+                <!-- <th scope="col">Status</th> -->
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -27,16 +27,16 @@ BookService.getBooks()
                 <th scope="row">{{ b.id }}</th>
                 <td>{{ b.title }}</td>
                 <td>{{ b.authors }}</td>
-                <td>{{ b.categories }}</td>
-                <td>{{ formatTime(b.publishedDate) }}</td>
-                <td>
+                <td>{{ b.bookshelves }}</td>
+                <!-- <td>{{ formatTime(b.publishedDate) }}</td> -->
+                <!-- <td>
                     <template v-if="b.inStock == true">
                         <i class="fa-solid fa-circle text-warning"></i> Out Of Stock
                     </template>
                     <template v-else="">
                         <i class="fa-solid fa-circle text-success"></i> Available
                     </template>
-                </td>
+                </td> -->
                 <td>
                     <div class="btn-group">
                         <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-primary">

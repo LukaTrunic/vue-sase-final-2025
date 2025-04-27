@@ -26,9 +26,9 @@ function doSearch(e:any) {
 
   // filter chain
   books.value = allBooks.value.filter(b => {
-    return b.title.toLowerCase().includes(input) || 
-    b.publishedDate.toLowerCase().includes(input) || 
-    b.authors.toLowerCase().includes(input)
+    return b.title.toLowerCase().includes(input) //|| 
+    // b.publishedDate.toLowerCase().includes(input) 
+    // b.authors.toLowerCase().includes(input)
   })
 }
 </script>
@@ -48,11 +48,11 @@ function doSearch(e:any) {
         <p class="card-subtitle mb-2 text-body-secondary">{{ b.authors }}</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">
+        <!-- <li class="list-group-item">
           <i class="fa-solid fa-clock"></i> {{ b.publishedDate ? formatTime(b.publishedDate) : 'Unknown date' }}
-        </li>
+        </li> -->
         <li class="list-group-item">
-          <i class="fa-solid fa-list"></i>{{ b.categories }}
+          <i class="fa-solid fa-list"></i>{{ b.bookshelves }}
         </li>
       </ul>
       <div class="card-body">

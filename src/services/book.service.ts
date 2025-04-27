@@ -2,11 +2,9 @@ import type { BookModel } from "@/models/book.model";
 import axios from "axios";
 
 const client = axios.create({
-    baseURL: "https://openlibrary.org",
-    timeout: 12000,
+    baseURL: "http://localhost:5000/api",
     headers: {
-        'Accept': 'application/json',
-        'X-Name': 'The Library System' // you can check which frontend application is using your beckend application
+        'Accept': 'application/json'
     },
     validateStatus: (status: number) => {
         return status === 200
@@ -15,16 +13,10 @@ const client = axios.create({
 
 export class BookService {
     static async getBooks() {
-        return await client.request<BookModel[]>({
-            url: '/search.json',
-            method: 'get',
-            params : {
-                q: 'a'
-            }
-        })
+        return await client.get<BookModel[]>('/books')
     }
 
     static async getBookById(id: number) {
-        return await client.get<BookModel>(`/works/${id}.json`)
+        return await client.get<BookModel>(`/books/${id}`);
     }
 }
