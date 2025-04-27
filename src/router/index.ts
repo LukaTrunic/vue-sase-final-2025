@@ -6,6 +6,7 @@ import TableView from '@/views/TableView.vue'
 import AuthorView from '@/views/AuthorView.vue'
 import LoginView from '@/views/LoginView.vue'
 import EditAuthor from '@/views/EditAuthor.vue'
+import NewAuthor from '@/views/NewAuthor.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,11 +42,16 @@ const router = createRouter({
       component: AuthorView,
     },
     {
+      path: '/author/new',
+      name: 'new-author',
+      component: NewAuthor,
+    },
+    {
       path: '/author/:id',
       name: 'edit-author',
       component: EditAuthor,
-    },
-  ],
+    }
+  ]
 })
 
 export default router

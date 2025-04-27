@@ -1,22 +1,22 @@
 <script lang="ts" setup>
 import type { AuthorModel } from '@/models/author.model';
-import { AuthService } from '@/services/auth.service';
 import { AuthorService } from '@/services/author.service';
-import { formatTime } from '@/utils';
+import { doLogout, formatTime } from '@/utils';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
-const router = useRouter()
 const authors = ref<AuthorModel[]>()
 AuthorService.getAuthors()
     .then(rsp => authors.value = rsp.data)
-    .catch(e => {
-        AuthService.removeAuth()
-        router.push('/login')
-    })
+    .catch(e => doLogout())
 
-function deleteObject(author: AuthorModel) {
-
+async function doDelete(author: AuthorModel) {
+    try {
+        if (!confirm(`Are you sure you want to delete ${author.name}?`)) return
+        await AuthorService.deleteAuthor(author.authorId)
+        authors.value = authors.value?.filter(a => a.authorId !== author.authorId) // only remove the one with the same id in the above code
+    } catch {
+        doLogout()
+    }
 }
 
 </script>
@@ -53,7 +53,7 @@ function deleteObject(author: AuthorModel) {
                         <RouterLink :to="`/author/${a.authorId}`" class="btn btn-sm btn-success">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </RouterLink>
-                        <button class="btn btn-sm btn-danger" @click="deleteObject(a)">
+                        <button class="btn btn-sm btn-danger" @click="doDelete(a)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
                     </div>

@@ -26,20 +26,41 @@ BookService.getBooks()
                 <th scope="col">Author</th>
                 <th scope="col">Categories</th>
                 <th scope="col">Downloads</th>
-                <th scope="col">Pupularity</th>
+                <th scope="col">Popularity</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr v-for="b of books" :key="b.id">
+            <tr v-for="b in books" :key="b.id">
                 <th scope="row">{{ b.id }}</th>
                 <td>{{ b.title }}</td>
-                <td>{{ b.authors }}</td>
-                <td>{{ b.bookshelves }}</td>
+
+                <!-- Authors (show names nicely) -->
+                <td>
+                    <template v-if="b.authors && b.authors.length">
+                        {{b.authors.map(author => author.name).join(', ')}}
+                    </template>
+                    <template v-else>
+                        Unknown Author
+                    </template>
+                </td>
+
+                <!-- Categories  -->
+                <td>
+                    <template v-if="b.subjects && b.subjects.length">
+                        {{ b.subjects.join(', ') }}
+                    </template>
+                    <template v-else>
+                        No Category
+                    </template>
+                </td>
+
+                <!-- Downloads -->
                 <td>
                     {{ b.download_count ? `${b.download_count} downloads` : 'Unknown downloads' }}
                 </td>
 
+                <!-- Popularity -->
                 <td>
                     <template v-if="b.download_count > 100000">
                         <i class="fa-solid fa-circle text-success"></i> Popular
@@ -48,6 +69,8 @@ BookService.getBooks()
                         <i class="fa-solid fa-circle text-warning"></i> Low Popularity
                     </template>
                 </td>
+
+                <!-- Actions -->
                 <td>
                     <div class="btn-group">
                         <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-primary">
