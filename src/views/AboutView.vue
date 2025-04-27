@@ -1,4 +1,10 @@
+<script setup lang="ts">
+import Navigation from '@/components/Navigation.vue';
+
+</script>
+
 <template>
+  <Navigation/>
   <div class="about">
     <h1>Singidunum University - SASE</h1>
     <h3>Luka Trunic - 2021230020</h3>

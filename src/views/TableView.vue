@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue'
 import { useLogout } from '@/hooks/logout.hook'
 import type { BookModel } from '@/models/book.model'
 import { BookService } from '@/services/book.service'
@@ -12,6 +13,7 @@ BookService.getBooks()
 </script>
 
 <template>
+    <Navigation/>
     <h3>Table</h3>
     <table class="table table-striped table-hover" v-if="books">
         <thead>

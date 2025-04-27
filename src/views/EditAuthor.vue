@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { AuthorModel } from '@/models/author.model';
 import { AuthorService } from '@/services/author.service';
@@ -24,6 +25,7 @@ function doUpdate() {
 </script>
 
 <template>
+    <Navigation/>
     <div class="custom-form" v-if="author">
         <h1>Edit Author</h1>
         <form v-on:submit.prevent="doUpdate">

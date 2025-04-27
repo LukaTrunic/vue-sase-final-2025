@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import { AuthorService } from '@/services/author.service';
 import { ref } from 'vue';
@@ -19,6 +20,7 @@ function doCreate() {
 </script>
 
 <template>
+    <Navigation/>
     <div class="custom-form" v-if="author">
         <h1>Create Author</h1>
         <form v-on:submit.prevent="doCreate">

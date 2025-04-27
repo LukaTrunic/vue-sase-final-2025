@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { AuthorModel } from '@/models/author.model';
 import { AuthorService } from '@/services/author.service';
@@ -24,6 +25,8 @@ async function doDelete(author: AuthorModel) {
 </script>
 
 <template>
+    <Navigation/>
+    
     <h3>Authors</h3>
 
     <div>

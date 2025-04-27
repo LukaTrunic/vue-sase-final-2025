@@ -1,29 +1,31 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
 import { AuthService } from '@/services/auth.service';
 import { MainService } from '@/services/main.service';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 
-    const email = ref<string>('')
-    const password = ref<string>('')
-    const router = useRouter()
+const email = ref<string>('')
+const password = ref<string>('')
+const router = useRouter()
 
-    function doLogin(e: Event) {
-        e.preventDefault()
+function doLogin(e: Event) {
+    e.preventDefault()
 
-        if (email.value == '' || password.value == '') return
+    if (email.value == '' || password.value == '') return
 
-        MainService.login(email.value, password.value)
-            .then(rsp => {
-                AuthService.createAuth(rsp.data)
-                router.push('/')
-            })
-            .catch(e => alert('Username or Password is wrong'))
-    }
+    MainService.login(email.value, password.value)
+        .then(rsp => {
+            AuthService.createAuth(rsp.data)
+            router.push('/')
+        })
+        .catch(e => alert('Username or Password is wrong'))
+}
 </script>
 
 <template>
+    <Navigation />
     <div class="custom-form">
         <div class="text-center">
             <h3>Library App</h3>

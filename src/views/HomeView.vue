@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { BookModel } from '@/models/book.model';
 import { BookService } from '@/services/book.service';
@@ -38,6 +39,7 @@ function doSearch(e: any) {
 </script>
 
 <template>
+  <Navigation/>
   <div class="input-group mb-3 search">
     <span class="input-group-text" id="search">
       <i class="fa-solid fa-magnifying-glass"></i>

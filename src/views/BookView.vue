@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { BookModel } from '@/models/book.model';
 import { BookService } from '@/services/book.service';
@@ -18,6 +19,7 @@ BookService.getBookById(id)
 </script>
 
 <template>
+    <Navigation />
     <div v-if="book">
         <div class="row mb-3">
             <div class="col-6">
