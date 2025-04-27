@@ -1,12 +1,19 @@
 <script lang="ts" setup>
 import type { BookModel } from '@/models/book.model'
+import { AuthService } from '@/services/auth.service'
 import { BookService } from '@/services/book.service'
 import { formatTime } from '@/utils'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const books = ref<BookModel[]>()
 BookService.getBooks()
     .then(rsp => books.value = rsp.data)
+    .catch(e => {
+        AuthService.removeAuth()
+        router.push('/login')
+    })
 </script>
 
 <template>
@@ -33,10 +40,10 @@ BookService.getBooks()
                     <template v-if="b.inStock == true">
                         <i class="fa-solid fa-circle text-warning"></i> Out Of Stock
                     </template>
-                    <template v-else="">
+<template v-else="">
                         <i class="fa-solid fa-circle text-success"></i> Available
                     </template>
-                </td> -->
+</td> -->
                 <td>
                     <div class="btn-group">
                         <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-primary">

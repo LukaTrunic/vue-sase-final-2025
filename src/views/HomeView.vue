@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { BookModel } from '@/models/book.model';
+import { AuthService } from '@/services/auth.service';
 import { BookService } from '@/services/book.service';
 import { coverImage, formatTime } from '@/utils';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const books = ref<BookModel[]>()
 const allBooks = ref<BookModel[]>()
 BookService.getBooks()
@@ -11,24 +14,34 @@ BookService.getBooks()
     allBooks.value = rsp.data
     books.value = rsp.data
   })
+  .catch(e => {
+    AuthService.removeAuth()
+    router.push('/login')
+  })
 
-function doSearch(e:any) {
+function doSearch(e: any) {
   // when book not loaded, it skips search
-  if(allBooks.value == undefined) return
+  if (allBooks.value == undefined) return
 
   // makes sure input is lowercase
-  const input = e.target.value? e.target.value.toLowerCase() : ''
+  const input = e.target.value ? e.target.value.toLowerCase() : ''
 
   // if search bar is empty, return all books
-  if(input == '') {
+  if (input == '') {
     books.value = allBooks.value
   }
 
+  // // filter chain
+  // books.value = allBooks.value.filter(b => {
+  //   return b.title.toLowerCase().includes(input) //|| 
+  //   // b.publishedDate.toLowerCase().includes(input) 
+  //   // b.authors.toLowerCase().includes(input)
+  // })
   // filter chain
   books.value = allBooks.value.filter(b => {
-    return b.title.toLowerCase().includes(input) //|| 
-    // b.publishedDate.toLowerCase().includes(input) 
-    // b.authors.toLowerCase().includes(input)
+    b.title.toLowerCase().includes(input) ||
+      b.authors.some(a => a.name.toLowerCase().includes(input)) ||
+      b.subjects.some(s => s.toLowerCase().includes(input))
   })
 }
 </script>
@@ -38,21 +51,25 @@ function doSearch(e:any) {
     <span class="input-group-text" id="search">
       <i class="fa-solid fa-magnifying-glass"></i>
     </span>
-    <input type="text" class="form-control" aria-describedby="search" placeholder="Title, Author..." @keyup="(e) => doSearch(e)">
+    <input type="text" class="form-control" aria-describedby="search" placeholder="Title, Author..."
+      @keyup="(e) => doSearch(e)">
   </div>
   <div class="wrapper mb-3" v-if="books">
     <div class="card book-card" v-for="b of books" :key="b.id">
       <img :src="coverImage(b)" class="card-img-top" :alt="b.title">
       <div class="card-body">
         <h5 class="card-title">{{ b.title }}</h5>
-        <p class="card-subtitle mb-2 text-body-secondary">{{ b.authors }}</p>
+        <p class="card-subtitle mb-2 text-body-secondary">
+          {{b.authors.map(a => a.name).join(', ')}}
+        </p>
       </div>
       <ul class="list-group list-group-flush">
         <!-- <li class="list-group-item">
           <i class="fa-solid fa-clock"></i> {{ b.publishedDate ? formatTime(b.publishedDate) : 'Unknown date' }}
         </li> -->
         <li class="list-group-item">
-          <i class="fa-solid fa-list"></i>{{ b.bookshelves }}
+          <i class="fa-solid fa-list"></i>
+          {{ b.subjects ? b.subjects.map(subject => subject.split('--')[0].trim()).join(', ') : 'Unknown category' }}
         </li>
       </ul>
       <div class="card-body">

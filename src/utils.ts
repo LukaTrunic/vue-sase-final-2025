@@ -11,5 +11,5 @@ export function formatTime(iso: string) { // special time format ISO 8601 (YYYY-
 }
 
 export function coverImage(book: BookModel) {
-    return book.media_type
+    return book.formats["image/jpeg"];
 }

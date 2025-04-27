@@ -19,7 +19,7 @@ import { useRouter } from 'vue-router';
                 AuthService.createAuth(rsp.data)
                 router.push('/')
             })
-            .catch(e => alert('failed to login'))
+            .catch(e => alert('Username or Password is wrong'))
     }
 </script>
 
