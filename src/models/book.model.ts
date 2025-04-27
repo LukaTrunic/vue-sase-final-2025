@@ -18,8 +18,8 @@
 export interface BookModel {
     id: string;
     title: string;
-    authors: string[];
-    publishedDate?: string;
+    authors: string; // []
+    publishedDate: string;
     categories?: string[];
     thumbnail?: string;
 }

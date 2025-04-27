@@ -13,15 +13,23 @@ BookService.getBooks()
   })
 
 function doSearch(e:any) {
+  // when book not loaded, it skips search
   if(allBooks.value == undefined) return
 
+  // makes sure input is lowercase
   const input = e.target.value? e.target.value.toLowerCase() : ''
+
+  // if search bar is empty, return all books
   if(input == '') {
     books.value = allBooks.value
   }
 
-  console.log(e.target.value)
-  books.value = allBooks.value?.filter(b=>b.title.toLowerCase().includes(input))
+  // filter chain
+  books.value = allBooks.value.filter(b => {
+    return b.title.toLowerCase().includes(input) || 
+    b.publishedDate.toLowerCase().includes(input) || 
+    b.authors.toLowerCase().includes(input)
+  })
 }
 </script>
 
