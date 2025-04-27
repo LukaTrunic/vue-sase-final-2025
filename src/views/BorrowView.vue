@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import { BorrowService } from '@/services/borrow.service';
@@ -13,6 +14,6 @@ BorrowService.getBorrows()
 
 <template>
     <Navigation/>
-
-    <pre>{{ borrows }}</pre>
+    <pre v-if="borrows">{{ borrows }}</pre>
+    <Loading v-else/>
 </template>
