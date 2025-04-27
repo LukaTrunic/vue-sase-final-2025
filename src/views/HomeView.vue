@@ -31,18 +31,13 @@ function doSearch(e: any) {
     books.value = allBooks.value
   }
 
-  // // filter chain
-  // books.value = allBooks.value.filter(b => {
-  //   return b.title.toLowerCase().includes(input) //|| 
-  //   // b.publishedDate.toLowerCase().includes(input) 
-  //   // b.authors.toLowerCase().includes(input)
-  // })
   // filter chain
   books.value = allBooks.value.filter(b => {
-    b.title.toLowerCase().includes(input) ||
-      b.authors.some(a => a.name.toLowerCase().includes(input)) ||
-      b.subjects.some(s => s.toLowerCase().includes(input))
-  })
+  return b.title.toLowerCase().includes(input) ||
+    b.authors.some(a => a.name.toLowerCase().includes(input)) ||
+    b.subjects.some(s => s.toLowerCase().includes(input));
+})
+
 }
 </script>
 
