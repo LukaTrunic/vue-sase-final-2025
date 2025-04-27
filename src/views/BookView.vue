@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+import { useLogout } from '@/hooks/logout.hook';
 import type { BookModel } from '@/models/book.model';
-import { AuthService } from '@/services/auth.service';
 import { BookService } from '@/services/book.service';
-import { coverImage, formatTime } from '@/utils';
+import { coverImage } from '@/utils';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+const logout = useLogout()
 const router = useRouter()
 const route = useRoute()
 const id = Number(route.params.id)
@@ -13,10 +14,7 @@ const book = ref<BookModel>()
 
 BookService.getBookById(id)
     .then(rsp => book.value = rsp.data)
-    .catch(e => {
-        AuthService.removeAuth()
-        router.push('/login')
-    })
+    .catch(e => logout(e))
 </script>
 
 <template>

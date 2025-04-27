@@ -15,9 +15,3 @@ export function formatTime(iso: string) { // special time format ISO 8601 (YYYY-
 export function coverImage(book: BookModel) {
     return book.formats["image/jpeg"];
 }
-
-export function doLogout() {
-    const router = useRouter()
-    AuthService.removeAuth()
-    router.push('login')
-}

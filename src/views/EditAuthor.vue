@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import { useLogout } from '@/hooks/logout.hook';
 import type { AuthorModel } from '@/models/author.model';
 import { AuthorService } from '@/services/author.service';
-import { doLogout, formatTime } from '@/utils';
+import { formatTime } from '@/utils';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+const logout = useLogout()
 const router = useRouter()
 const route = useRoute()
 const id = Number(route.params.id)
@@ -12,12 +14,12 @@ const author = ref<AuthorModel>()
 
 AuthorService.getAuthorById(id)
     .then(rsp => author.value = rsp.data)
-    .catch(e => doLogout())
+    .catch(e => logout(e))
 
 function doUpdate() {
     AuthorService.updateAuthor(id, author.value)
         .then(rsp => router.push('/author'))
-        .catch(e => doLogout())
+        .catch(e => logout(e))
 }
 </script>
 

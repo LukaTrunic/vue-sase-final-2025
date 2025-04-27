@@ -1,21 +1,23 @@
 <script lang="ts" setup>
+import { useLogout } from '@/hooks/logout.hook';
 import type { AuthorModel } from '@/models/author.model';
 import { AuthorService } from '@/services/author.service';
-import { doLogout, formatTime } from '@/utils';
+import { formatTime } from '@/utils';
 import { ref } from 'vue';
 
+const logout = useLogout()
 const authors = ref<AuthorModel[]>()
 AuthorService.getAuthors()
     .then(rsp => authors.value = rsp.data)
-    .catch(e => doLogout())
+    .catch(e => logout(e))
 
 async function doDelete(author: AuthorModel) {
     try {
         if (!confirm(`Are you sure you want to delete ${author.name}?`)) return
         await AuthorService.deleteAuthor(author.authorId)
         authors.value = authors.value?.filter(a => a.authorId !== author.authorId) // only remove the one with the same id in the above code
-    } catch {
-        doLogout()
+    } catch (e) {
+        logout(e)
     }
 }
 

@@ -1,12 +1,11 @@
 <script setup lang="ts">
+import { useLogout } from '@/hooks/logout.hook';
 import type { BookModel } from '@/models/book.model';
-import { AuthService } from '@/services/auth.service';
 import { BookService } from '@/services/book.service';
-import { coverImage, formatTime } from '@/utils';
+import { coverImage } from '@/utils';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
-const router = useRouter()
+const logout = useLogout()
 const books = ref<BookModel[]>()
 const allBooks = ref<BookModel[]>()
 BookService.getBooks()
@@ -14,10 +13,7 @@ BookService.getBooks()
     allBooks.value = rsp.data
     books.value = rsp.data
   })
-  .catch(e => {
-    AuthService.removeAuth()
-    router.push('/login')
-  })
+  .catch(e => logout(e))
 
 function doSearch(e: any) {
   // when book not loaded, it skips search

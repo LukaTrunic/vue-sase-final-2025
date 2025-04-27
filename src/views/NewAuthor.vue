@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import { useLogout } from '@/hooks/logout.hook';
 import { AuthorService } from '@/services/author.service';
-import { doLogout } from '@/utils';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+const logout = useLogout()
 const router = useRouter()
 const author = ref({
     name: '',
@@ -13,7 +14,7 @@ const author = ref({
 function doCreate() {
     AuthorService.createAuthor(author.value)
         .then(rsp => router.push('/author'))
-        .catch(e => doLogout())
+        .catch(e => logout(e))
 }
 </script>
 
