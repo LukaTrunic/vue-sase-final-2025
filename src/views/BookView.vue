@@ -6,10 +6,9 @@ import type { BookModel } from '@/models/book.model';
 import { BookService } from '@/services/book.service';
 import { coverImage } from '@/utils';
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 
 const logout = useLogout()
-const router = useRouter()
 const route = useRoute()
 const id = Number(route.params.id)
 const book = ref<BookModel>()

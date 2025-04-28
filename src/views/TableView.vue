@@ -14,7 +14,7 @@ BookService.getBooks()
 </script>
 
 <template>
-    <Navigation/>
+    <Navigation />
     <h3>Table</h3>
     <table class="table table-striped table-hover" v-if="books">
         <thead>
@@ -79,6 +79,6 @@ BookService.getBooks()
             </tr>
         </tbody>
     </table>
-    <Loading v-else/>
-    
+    <Loading v-else />
+
 </template>

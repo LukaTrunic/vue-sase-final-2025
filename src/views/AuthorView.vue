@@ -26,7 +26,7 @@ async function doDelete(author: AuthorModel) {
 </script>
 
 <template>
-    <Navigation/>
+    <Navigation />
 
     <h3>Authors</h3>
 
@@ -68,5 +68,5 @@ async function doDelete(author: AuthorModel) {
         </tbody>
     </table>
 
-  <Loading v-else/>
+    <Loading v-else />
 </template>

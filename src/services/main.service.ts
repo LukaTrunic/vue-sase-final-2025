@@ -1,8 +1,8 @@
-import axios, { Axios, AxiosError, type AxiosResponse } from "axios"
+import axios, { AxiosError, type AxiosResponse } from "axios"
 import { AuthService } from "./auth.service"
 
 const client = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL: "https://localhost:5000/api",
     headers: {
         'Accept': 'application/json'
     },

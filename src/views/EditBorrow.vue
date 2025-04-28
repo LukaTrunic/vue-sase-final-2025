@@ -6,8 +6,6 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { BorrowService } from '@/services/borrow.service';
 import { AuthorService } from '@/services/author.service';
-import { BookService } from '@/services/book.service';
-
 import type { AuthorModel } from '@/models/author.model';
 import type { BorrowModel } from '@/models/borrow.model';
 import Loading from '@/components/Loading.vue';
@@ -16,7 +14,6 @@ const logout = useLogout()
 const router = useRouter()
 const route = useRoute()
 const id = Number(route.params.id)
-
 const borrow = ref<BorrowModel>()
 const authors = ref<AuthorModel[]>()
 
@@ -30,7 +27,7 @@ AuthorService.getAuthors()
 
 function doUpdate() {
     BorrowService.updateBorrow(id, borrow.value)
-        .then(() => router.push('/borrow'))
+        .then(rsp => router.push('/borrow'))
         .catch(e => logout(e))
 }
 </script>
@@ -73,5 +70,5 @@ function doUpdate() {
             </button>
         </form>
     </div>
-    <Loading v-else/>
+    <Loading v-else />
 </template>

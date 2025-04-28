@@ -5,11 +5,12 @@ import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { BorrowService } from '@/services/borrow.service';
 import { AuthorService } from '@/services/author.service';
-
 import type { AuthorModel } from '@/models/author.model';
 import Loading from '@/components/Loading.vue';
 import type { BookModel } from '@/models/book.model';
 import { BookService } from '@/services/book.service';
+import { AuthService } from '@/services/auth.service';
+import { coverImage } from '@/utils';
 
 const logout = useLogout()
 const router = useRouter()
@@ -35,12 +36,9 @@ AuthorService.getAuthors()
 
 function doCreate() {
     BorrowService.createBorrow(borrow.value)
-        .then(() => router.push('/borrow'))
+        .then(rsp => router.push('/borrow'))
         .catch(e => logout(e))
 }
-
-import { AuthService } from '@/services/auth.service';
-import { coverImage } from '@/utils';
 
 const currentUser = AuthService.getUser();
 
@@ -50,16 +48,16 @@ const currentUser = AuthService.getUser();
     <Navigation />
     <div class="custom-form" v-if="book">
         <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <RouterLink to="/">Home</RouterLink>
-            </li>
-            <li class="breadcrumb-item">
-                <RouterLink :to="`/book/${book.id}`">{{ book.title }}</RouterLink>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Borrow Now</li>
-        </ol>
-    </nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <RouterLink to="/">Home</RouterLink>
+                </li>
+                <li class="breadcrumb-item">
+                    <RouterLink :to="`/book/${book.id}`">{{ book.title }}</RouterLink>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Borrow Now</li>
+            </ol>
+        </nav>
         <div class="card">
             <div class="card-header">
                 <h3>New Borrow Ticket</h3>

@@ -22,9 +22,9 @@ function doDelete(bo: BorrowModel) {
 function makeReturned(bo: BorrowModel) {
     BorrowService.returnBorrow(bo.borrowId)
         .then(rsp => borrows.value!.forEach(borrow => {
-            if(borrow.borrowId = bo.borrowId)
+            if (borrow.borrowId = bo.borrowId)
                 borrow.returnedAt = new Date().toISOString()
-    }))
+        }))
 }
 </script>
 
