@@ -11,5 +11,4 @@ import Navigation from '@/components/Navigation.vue';
     <h3>Luka Trunic - 2021230020</h3>
     <p>This project was made for the final for course SASE in 2025</p>
   </div>
-  <Loading/>
 </template>

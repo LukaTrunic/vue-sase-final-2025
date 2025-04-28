@@ -26,8 +26,19 @@ function doUpdate() {
 </script>
 
 <template>
-    <Navigation/>
+    <Navigation />
     <div class="custom-form" v-if="author">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <RouterLink to="/">Home</RouterLink>
+                </li>
+                <li class="breadcrumb-item">
+                    <RouterLink to="/author">Authors</RouterLink>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{ author.name }}</li>
+            </ol>
+        </nav>
         <h3>Edit Author</h3>
         <form v-on:submit.prevent="doUpdate">
             <div class="mb-3">
@@ -52,6 +63,6 @@ function doUpdate() {
             </button>
         </form>
     </div>
-    
-  <Loading v-else/>
+
+    <Loading v-else />
 </template>

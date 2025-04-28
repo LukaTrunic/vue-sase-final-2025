@@ -23,13 +23,13 @@ BookService.getBookById(id)
     <Navigation />
     <div v-if="book">
         <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <RouterLink to="/">Home</RouterLink>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">{{ book.title }}</li>
-        </ol>
-    </nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <RouterLink to="/">Home</RouterLink>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{ book.title }}</li>
+            </ol>
+        </nav>
         <div class="row mb-3">
             <div class="col-6">
                 <img :src="coverImage(book)" :alt="book.title" class="img-fluid">
@@ -70,12 +70,16 @@ BookService.getBookById(id)
                         <p v-else>
                             No description available.
                         </p>
+
+                        <RouterLink :to="`/book/${book.id}/take`" class="btn btn-success mt-3">
+                            <i class="fa-solid fa-up-right-from-square"></i> Take Book
+                        </RouterLink>
                     </div>
                 </div>
             </div>
         </div>
 
     </div>
-    
-  <Loading v-else/>
+
+    <Loading v-else />
 </template>
