@@ -10,6 +10,7 @@ import NewAuthor from '@/views/NewAuthor.vue'
 import BorrowView from '@/views/BorrowView.vue'
 import EditBorrow from '@/views/EditBorrow.vue'
 import NewBorrow from '@/views/NewBorrow.vue'
+import QRCodeView from '@/views/QRCodeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -92,6 +93,14 @@ const router = createRouter({
       component: BorrowView,
       meta: {
         title: 'Borrow Data'
+      }
+    },
+    {
+      path: '/borrow/:id/qrcode',
+      name: 'qrcode',
+      component: QRCodeView,
+      meta: {
+        title: 'QRCode'
       }
     },
     {

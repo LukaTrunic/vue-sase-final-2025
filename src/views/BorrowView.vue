@@ -87,7 +87,7 @@ function makeReturned(bo: BorrowModel) {
                         </button>
                     </div>
                     <div class="btn-group" v-else>
-                        <RouterLink :to="`/borrow/${bo.borrowId}/reciept`" class="btn btn-sm btn-primary">
+                        <RouterLink :to="`/borrow/${bo.borrowId}/qrcode`" class="btn btn-sm btn-primary">
                             <i class="fa-solid fa-receipt"></i>
                         </RouterLink>
                     </div>
