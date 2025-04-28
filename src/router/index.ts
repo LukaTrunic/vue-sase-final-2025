@@ -9,6 +9,7 @@ import EditAuthor from '@/views/EditAuthor.vue'
 import NewAuthor from '@/views/NewAuthor.vue'
 import BorrowView from '@/views/BorrowView.vue'
 import EditBorrow from '@/views/EditBorrow.vue'
+import NewBorrow from '@/views/NewBorrow.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: AboutView
+    },
+    {
+      path: '/book/:id/take',
+      name: 'new-borrow',
+      component: NewBorrow
     },
     {
       path: '/book/:id',

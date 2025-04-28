@@ -22,6 +22,14 @@ BookService.getBookById(id)
 <template>
     <Navigation />
     <div v-if="book">
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <RouterLink to="/">Home</RouterLink>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ book.title }}</li>
+        </ol>
+    </nav>
         <div class="row mb-3">
             <div class="col-6">
                 <img :src="coverImage(book)" :alt="book.title" class="img-fluid">

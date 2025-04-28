@@ -23,7 +23,7 @@ function doCreate() {
 <template>
     <Navigation/>
     <div class="custom-form" v-if="author">
-        <h1>Create Author</h1>
+        <h3>Create Author</h3>
         <form v-on:submit.prevent="doCreate">
             <div class="mb-3">
                 <label for="name" class="form-label">Name:</label>

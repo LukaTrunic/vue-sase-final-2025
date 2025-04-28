@@ -38,7 +38,7 @@ function doUpdate() {
 <template>
     <Navigation />
     <div class="custom-form" v-if="borrow">
-        <h1>Edit Borrow Ticket</h1>
+        <h3>Edit Borrow Ticket</h3>
         <form v-on:submit.prevent="doUpdate">
             <div class="mb-3">
                 <label for="id" class="form-label">ID:</label>

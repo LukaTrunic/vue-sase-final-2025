@@ -31,16 +31,16 @@ function doSearch(e: any) {
 
   // filter chain
   books.value = allBooks.value.filter(b => {
-  return b.title.toLowerCase().includes(input) ||
-    b.authors.some(a => a.name.toLowerCase().includes(input)) ||
-    b.subjects.some(s => s.toLowerCase().includes(input));
-})
+    return b.title.toLowerCase().includes(input) ||
+      b.authors.some(a => a.name.toLowerCase().includes(input)) ||
+      b.subjects.some(s => s.toLowerCase().includes(input));
+  })
 
 }
 </script>
 
 <template>
-  <Navigation/>
+  <Navigation />
   <div class="input-group mb-3 search">
     <span class="input-group-text" id="search">
       <i class="fa-solid fa-magnifying-glass"></i>
@@ -63,17 +63,22 @@ function doSearch(e: any) {
         </li> -->
         <li class="list-group-item">
           <i class="fa-solid fa-list"></i>
-          {{ b.subjects ? b.subjects.map(subject => subject.split('--')[0].trim()).join(', ') : 'Unknown category' }}
+          {{b.subjects ? b.subjects.map(subject => subject.split('--')[0].trim()).join(', ') : 'Unknown category'}}
         </li>
       </ul>
       <div class="card-body">
-        <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-primary">
-          <i class="fa-solid fa-up-right-from-square"></i>More
-        </RouterLink>
+        <div class="btn-group">
+          <RouterLink :to="`/book/${b.id}`" class="btn btn-sm btn-primary">
+            <i class="fa-solid fa-up-right-from-square"></i>More
+          </RouterLink>
+          <RouterLink :to="`/book/${b.id}/take`" class="btn btn-sm btn-success">
+            <i class="fa-solid fa-up-right-from-square"></i> Take Book
+          </RouterLink>
+        </div>
       </div>
     </div>
   </div>
-  <Loading v-else/>
+  <Loading v-else />
 </template>
 
 <style>

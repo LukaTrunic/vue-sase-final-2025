@@ -13,10 +13,18 @@ BorrowService.getBorrows()
     .then(rsp => borrows.value = rsp.data)
     .catch(e => logout(e))
 
-function doDelete(bo: BorrowModel){
+function doDelete(bo: BorrowModel) {
     BorrowService.deleteBorrow(bo.borrowId)
         .then(rsp => borrows.value = borrows.value?.filter(borrow => borrow.borrowId !== bo.borrowId))
         .catch(e => logout(e))
+}
+
+function makeReturned(bo: BorrowModel) {
+    BorrowService.returnBorrow(bo.borrowId)
+        .then(rsp => borrows.value!.forEach(borrow => {
+            if(borrow.borrowId = bo.borrowId)
+                borrow.returnedAt = new Date().toISOString()
+    }))
 }
 </script>
 
@@ -68,12 +76,20 @@ function doDelete(bo: BorrowModel){
                 <!-- Actions -->
                 <td>
                     <div class="btn-group" v-if="!bo.returnedAt">
+                        <button class="btn btn-sm btn-light" @click="makeReturned(bo)">
+                            <i class="fa-brands fa-gratipay"></i>
+                        </button>
                         <RouterLink :to="`/borrow/${bo.borrowId}`" class="btn btn-sm btn-success">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </RouterLink>
                         <button class="btn btn-sm btn-danger" @click="doDelete(bo)">
                             <i class="fa-solid fa-trash"></i>
                         </button>
+                    </div>
+                    <div class="btn-group" v-else>
+                        <RouterLink :to="`/borrow/${bo.borrowId}/reciept`" class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-receipt"></i>
+                        </RouterLink>
                     </div>
                 </td>
             </tr>

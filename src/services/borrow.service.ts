@@ -18,6 +18,10 @@ export class BorrowService {
         return await MainService.useAxios(`/borrow/${id}`, 'put', model)
     }
 
+    static async returnBorrow(id: number) {
+        return await MainService.useAxios(`/borrow/${id}/return`, 'put')
+    }
+
     static async deleteBorrow(id: number){
         return await MainService.useAxios(`/borrow/${id}`, 'delete')
     }

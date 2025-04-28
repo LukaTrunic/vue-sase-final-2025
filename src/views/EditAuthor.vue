@@ -28,7 +28,7 @@ function doUpdate() {
 <template>
     <Navigation/>
     <div class="custom-form" v-if="author">
-        <h1>Edit Author</h1>
+        <h3>Edit Author</h3>
         <form v-on:submit.prevent="doUpdate">
             <div class="mb-3">
                 <label for="id" class="form-label">ID:</label>
