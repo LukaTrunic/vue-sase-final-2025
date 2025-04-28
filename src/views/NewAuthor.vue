@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import { AuthorService } from '@/services/author.service';
@@ -37,4 +38,5 @@ function doCreate() {
             </button>
         </form>
     </div>
+    <Loading v-else/>
 </template>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { AuthService } from '@/services/auth.service';
 import { MainService } from '@/services/main.service';
@@ -45,4 +46,5 @@ function doLogin(e: Event) {
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <Loading/>
 </template>

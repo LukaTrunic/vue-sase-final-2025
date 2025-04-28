@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { BookModel } from '@/models/book.model';
@@ -67,4 +68,6 @@ BookService.getBookById(id)
         </div>
 
     </div>
+    
+  <Loading v-else/>
 </template>

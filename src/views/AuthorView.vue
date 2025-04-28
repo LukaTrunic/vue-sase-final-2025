@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { AuthorModel } from '@/models/author.model';
@@ -26,7 +27,7 @@ async function doDelete(author: AuthorModel) {
 
 <template>
     <Navigation/>
-    
+
     <h3>Authors</h3>
 
     <div>
@@ -67,5 +68,5 @@ async function doDelete(author: AuthorModel) {
         </tbody>
     </table>
 
-    <div v-else>Loading authors...</div>
+  <Loading v-else/>
 </template>

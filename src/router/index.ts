@@ -8,6 +8,7 @@ import LoginView from '@/views/LoginView.vue'
 import EditAuthor from '@/views/EditAuthor.vue'
 import NewAuthor from '@/views/NewAuthor.vue'
 import BorrowView from '@/views/BorrowView.vue'
+import EditBorrow from '@/views/EditBorrow.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,47 +16,52 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: HomeView
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginView,
+      component: LoginView
     },
     {
       path: '/about',
       name: 'about',
-      component: AboutView,
+      component: AboutView
     },
     {
       path: '/book/:id',
       name: 'book',
-      component: BookView,
+      component: BookView
     },
     {
       path: '/table',
       name: 'table',
-      component: TableView,
+      component: TableView
     },
     {
       path: '/author',
       name: 'author',
-      component: AuthorView,
+      component: AuthorView
     },
     {
       path: '/author/new',
       name: 'new-author',
-      component: NewAuthor,
+      component: NewAuthor
     },
     {
       path: '/author/:id',
       name: 'edit-author',
-      component: EditAuthor,
+      component: EditAuthor
     },
     {
       path: '/borrow',
       name: 'borrow',
-      component: BorrowView,
+      component: BorrowView
+    },
+    {
+      path: '/borrow/:id',
+      name: 'edit-borrow',
+      component: EditBorrow
     }
   ]
 })

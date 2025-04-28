@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 import { useLogout } from '@/hooks/logout.hook';
 import type { BookModel } from '@/models/book.model';
@@ -72,7 +73,7 @@ function doSearch(e: any) {
       </div>
     </div>
   </div>
-  <div v-else>Loading...</div>
+  <Loading v-else/>
 </template>
 
 <style>
