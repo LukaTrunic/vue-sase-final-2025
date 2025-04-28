@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Loading from '@/components/Loading.vue';
 import Navigation from '@/components/Navigation.vue';
 
 </script>

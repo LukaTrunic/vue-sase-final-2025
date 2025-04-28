@@ -17,59 +17,103 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginView
+      component: LoginView,
+      meta: {
+        title: 'Login'
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: AboutView
+      component: AboutView,
+      meta: {
+        title: 'About'
+      }
     },
     {
       path: '/book/:id/take',
       name: 'new-borrow',
-      component: NewBorrow
+      component: NewBorrow,
+      meta: {
+        title: 'Borrow Book'
+      }
     },
     {
       path: '/book/:id',
       name: 'book',
-      component: BookView
+      component: BookView,
+      meta: {
+        title: 'Book Details'
+      }
     },
     {
       path: '/table',
       name: 'table',
-      component: TableView
+      component: TableView,
+      meta: {
+        title: 'Table'
+      }
     },
     {
       path: '/author',
       name: 'author',
-      component: AuthorView
+      component: AuthorView,
+      meta: {
+        title: 'Authors'
+      }
     },
     {
       path: '/author/new',
       name: 'new-author',
-      component: NewAuthor
+      component: NewAuthor,
+      meta: {
+        title: 'Add Author'
+      }
     },
     {
       path: '/author/:id',
       name: 'edit-author',
-      component: EditAuthor
+      component: EditAuthor,
+      meta: {
+        title: 'Edit Author'
+      }
     },
     {
       path: '/borrow',
       name: 'borrow',
-      component: BorrowView
+      component: BorrowView,
+      meta: {
+        title: 'Borrow Data'
+      }
     },
     {
       path: '/borrow/:id',
       name: 'edit-borrow',
-      component: EditBorrow
+      component: EditBorrow,
+      meta: {
+        title: 'Edit Borrow Data'
+      }
+    },
+    {
+      path: '/:catchAll(.*)',
+      redirect: '/'
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = `${to.meta.title} :: The Library System`
+  }
+  next()
 })
 
 export default router

@@ -38,6 +38,17 @@ function doUpdate() {
 <template>
     <Navigation />
     <div class="custom-form" v-if="borrow">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <RouterLink to="/">Home</RouterLink>
+                </li>
+                <li class="breadcrumb-item">
+                    <RouterLink to="/borrow">Borrow List</RouterLink>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{ borrow.book }}</li>
+            </ol>
+        </nav>
         <h3>Edit Borrow Ticket</h3>
         <form v-on:submit.prevent="doUpdate">
             <div class="mb-3">
